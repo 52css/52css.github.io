@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="angular,component,directive,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="angular1 写组件angular1.0 没有组件的概念，但是有指令完全可以完成组件开发，而vue区分和指令和组件，而react只有组件。先说说为什么需要写组件？记得很久前一个后端大神和我说过，程序分3个阶段，第一阶段，看得到别人代码，第二阶段，写得出需求代码，第三阶段，是写得出别人看得懂的代码。这样使程序很容易心浮气躁，到了第二阶段就以为很牛，久而久之，能写得出别人看得懂代码不易。程序往往把">
+<meta name="keywords" content="angular,component,directive">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular1.0写组件">
+<meta property="og:url" content="http://yoursite.com/2017/09/12/angular1-0写组件/index.html">
+<meta property="og:site_name" content="52css">
+<meta property="og:description" content="angular1 写组件angular1.0 没有组件的概念，但是有指令完全可以完成组件开发，而vue区分和指令和组件，而react只有组件。先说说为什么需要写组件？记得很久前一个后端大神和我说过，程序分3个阶段，第一阶段，看得到别人代码，第二阶段，写得出需求代码，第三阶段，是写得出别人看得懂的代码。这样使程序很容易心浮气躁，到了第二阶段就以为很牛，久而久之，能写得出别人看得懂代码不易。程序往往把">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-26T01:20:49.122Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angular1.0写组件">
+<meta name="twitter:description" content="angular1 写组件angular1.0 没有组件的概念，但是有指令完全可以完成组件开发，而vue区分和指令和组件，而react只有组件。先说说为什么需要写组件？记得很久前一个后端大神和我说过，程序分3个阶段，第一阶段，看得到别人代码，第二阶段，写得出需求代码，第三阶段，是写得出别人看得懂的代码。这样使程序很容易心浮气躁，到了第二阶段就以为很牛，久而久之，能写得出别人看得懂代码不易。程序往往把">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/12/angular1-0写组件/">
+
+
+
+
+
+  <title>angular1.0写组件 | 52css</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">52css</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个前端，一个人生</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/12/angular1-0写组件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="52css">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">angular1.0写组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T22:19:34+08:00">
+                2017-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="angular1-写组件"><a href="#angular1-写组件" class="headerlink" title="angular1 写组件"></a>angular1 写组件</h3><p>angular1.0 没有组件的概念，但是有指令完全可以完成组件开发，而vue区分和指令和组件，而react只有组件。先说说为什么需要写组件？记得很久前一个后端大神和我说过，程序分3个阶段，第一阶段，看得到别人代码，第二阶段，写得出需求代码，第三阶段，是写得出别人看得懂的代码。这样使程序很容易心浮气躁，到了第二阶段就以为很牛，久而久之，能写得出别人看得懂代码不易。程序往往把自己定位接盘侠，前面开发走了，还没有文档，代码还不易读懂。。。<br>扯远了，组件其实就是为了让页面模块化，从而简单化，而组件必须具备“函数式编程”，即指定传入参数，再有返回参数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hello-world</span>&gt;</span><span class="tag">&lt;/<span class="name">hello-world</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .directive(<span class="string">'helloWorld'</span>, helloWorld);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [helloWorld helloWorld指令]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">helloWorld</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">      restrict: <span class="string">'EA'</span>, <span class="comment">// E 代表 element 元素 A代表 attr 属性</span></span><br><span class="line">      scope: &#123; <span class="comment">// 父传给子属性</span></span><br><span class="line">      &#125;,</span><br><span class="line">      template: <span class="string">'&lt;div&gt;Hello World&lt;/div&gt;'</span>, <span class="comment">// 子组件绚烂模板</span></span><br><span class="line">      controller: helloWorldCtrl, <span class="comment">// 子组件控制器</span></span><br><span class="line">      controllerAs: <span class="string">'vm'</span>, <span class="comment">// 所以内部变量赋值到vm</span></span><br><span class="line">      transclude: <span class="literal">true</span>, <span class="comment">// 是否可以嵌套</span></span><br><span class="line">      replace: <span class="literal">true</span> <span class="comment">// 是否直接替换父元素</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * [helloWorldCtrl helloWrold指令控制器]</span></span><br><span class="line"><span class="comment">   * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">helloWorldCtrl</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上还是指令的普通用法，angular的scope可以</p>
+<ul>
+<li>= 代表双绑</li>
+<li>@ 单绑</li>
+<li>&amp; function</li>
+</ul>
+<p>看是很好用 其实不然，</p>
+<ol>
+<li>双绑需要watch下，不让obect变化不起作用，</li>
+<li>单绑需要页面传递值下，</li>
+<li>而函数如果父调用子方法，或者子调用父方法，函数的参数传递总有问题，有次偶尔的操作如果可以传递，<br>具体使用</li>
+</ol>
+<h3 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-input</span> <span class="attr">config</span>=<span class="string">"&#123;</span></span></span><br><span class="line"><span class="tag"><span class="string">  oData: &#123;</span></span></span><br><span class="line"><span class="tag"><span class="string">    val: vm.myVal</span></span></span><br><span class="line"><span class="tag"><span class="string">  &#125;,</span></span></span><br><span class="line"><span class="tag"><span class="string">  fnChange: vm.inputChange</span></span></span><br><span class="line"><span class="tag"><span class="string">  &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vm.myVal = <span class="string">'123'</span>;</span><br><span class="line">vm.inputChange = inputChange</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [inputChange 子组件会调用父组件方法，并且传递子组件参数]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; val [description]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125;     [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inputChange</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 由于已经双绑，这里可以不用赋值，如果是单绑，需要给父组件值重新绑定下，如果是jq对象还需要$scope.$apply 赋值</span></span><br><span class="line">  <span class="built_in">console</span>.log(val);</span><br><span class="line">  vm.myVal = val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .directive(<span class="string">'myInput'</span>, myInput);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [myInput myInput组件]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myInput</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">      restrict: <span class="string">'EA'</span>, <span class="comment">// E 代表 element 元素 A代表 attr 属性</span></span><br><span class="line">      scope: &#123; <span class="comment">// 父传给子属性</span></span><br><span class="line">        config: <span class="string">'='</span></span><br><span class="line">      &#125;,</span><br><span class="line">      template: <span class="string">'&lt;input ng-model="vm.ngModel" ng-change="vm.config.fnChange(vm.ngModel)"/&gt;'</span>, <span class="comment">// 子组件绚烂模板</span></span><br><span class="line">      controller: myInputCtrl, <span class="comment">// 子组件控制器</span></span><br><span class="line">      controllerAs: <span class="string">'vm'</span>, <span class="comment">// 所以内部变量赋值到vm</span></span><br><span class="line">      transclude: <span class="literal">true</span>, <span class="comment">// 是否可以嵌套</span></span><br><span class="line">      replace: <span class="literal">true</span> <span class="comment">// 是否直接替换父元素</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * [myInputCtrl myInput指令控制器]</span></span><br><span class="line"><span class="comment">   * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">myInputCtrl</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> vm = <span class="keyword">this</span>,</span><br><span class="line">        unWatch;</span><br><span class="line"></span><br><span class="line">    unWatch = $scope.$watch(<span class="string">'config'</span>, fnWatchConfig, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    $scope.$on(<span class="string">'$destroy'</span>, fnDestroy);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * [fnDestroy 页面销毁]</span></span><br><span class="line"><span class="comment">     * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fnDestroy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        unWatch();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * [fnWatchConfig 监控config]</span></span><br><span class="line"><span class="comment">     * @param  &#123;[type]&#125; newVal [description]</span></span><br><span class="line"><span class="comment">     * @return &#123;[type]&#125;        [description]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fnWatchConfig</span>(<span class="params">newVal</span>) </span>&#123;</span><br><span class="line">        vm.config = newVal;</span><br><span class="line">        vm.ngModel = newVal.oData.val;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这样指令可以想组件一样大胆写，但是毕竟是ng1.0，组件值类型不方便定义，写好组件再来个readme，描述出传递的类型，和所有参数</p>
+<h3 id="怎么合理拆分成组件"><a href="#怎么合理拆分成组件" class="headerlink" title="怎么合理拆分成组件"></a>怎么合理拆分成组件</h3><ol>
+<li>公用区块（公共头部）</li>
+<li>公用特效（下拉框、单选框、复选框等）</li>
+<li><p>bootstrap大模块拆分（表单、表格）</p>
+<p>这样下来大项目被合理拆分，而单独小组件只负责传入参数和传出指，想写乱代码都难</p>
+</li>
+</ol>
+<h3 id="常用组件开发"><a href="#常用组件开发" class="headerlink" title="常用组件开发"></a>常用组件开发</h3><p>Grid                     栅栏<br>Table                    表格<br>Form                     表单<br>Input                    输入框（text、emal、number）<br>DatePicker               日期选择器<br>Checkbox                 复选框<br>Radio                    单选框<br>Upload                   上传文件<br>Textarea                 多行输入框<br>Select                   下来选择框<br>Button                   按钮<br>Img                      图片形状(圆角、圆、缩略)<br>Text                     情境文本颜色（text-muted、text-primary、text-success、text-info、text-warning、text-danger）<br>BG                       情境背景色（bg-primary、bg-success、bg-info、bg-warning、bg-danger）<br>Span[close]              关闭按钮<br>Span[caret]              三角符号<br>Cascades                 级联选择器<br>Dropdown                 下拉菜单<br>Switch                   开关<br>Nav                      导航<br>Crumb                    面包屑（路径导航）<br>Modal                    确认弹框<br>Confirm                  确认弹框<br>Icon                     图标<br>ScrollView               滚动视图<br>Step                     步骤条<br>Tabs                     选项卡<br>Pagination               分页<br>Tag                      标签<br>Tips                     头部提示<br>Badge                    徽章<br>PageHeader               页头<br>Alert                    警告框<br>Progress                 进度条<br>巨幕<br>BtnGroup                 按钮组<br>InputGroup               输入框组<br>Thumbnail                缩略图<br>Media                    媒体对象（左右布局）<br>ListGroup                列表组<br>Panel                    面版<br>Well                     Well背景带圆角，带颜色</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>1.公用代码只要写一次<br>2.修改同一代码只要一次</p>
+<h3 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h3><p>最初用EventService 同步</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag"># angular</a>
+          
+            <a href="/tags/component/" rel="tag"># component</a>
+          
+            <a href="/tags/directive/" rel="tag"># directive</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/09/lib-js-round/" rel="next" title="lib.js四舍五入">
+                <i class="fa fa-chevron-left"></i> lib.js四舍五入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/13/effect-animate-water-in-bottle/" rel="prev" title="【特效】瓶中摇摆的水">
+                【特效】瓶中摇摆的水 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ivan</p>
+              <p class="site-description motion-element" itemprop="description">魏杰的个人博客_web前端技术 52css.github.io,分享学习和工作前端效果</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#angular1-写组件"><span class="nav-number">1.</span> <span class="nav-text">angular1 写组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父组件"><span class="nav-number">2.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子组件"><span class="nav-number">3.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么合理拆分成组件"><span class="nav-number">4.</span> <span class="nav-text">怎么合理拆分成组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用组件开发"><span class="nav-number">5.</span> <span class="nav-text">常用组件开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目的"><span class="nav-number">6.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件通信"><span class="nav-number">7.</span> <span class="nav-text">组件通信</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
