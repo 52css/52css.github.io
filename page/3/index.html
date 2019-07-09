@@ -232,6 +232,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/15/js-基础类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="52css">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/15/js-基础类/" itemprop="url">js-基础类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T14:04:49+08:00">
+                2017-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">global, factory</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; (define.amd || define.cmd)) &#123;</span><br><span class="line">		define(factory);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		global.BaseClass = factory();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">//超级父类</span></span><br><span class="line">	<span class="comment">//为超级父类添加extend方法</span></span><br><span class="line">	BaseClass.extend = _extend;</span><br><span class="line">	BaseClass.mixin = _mixin;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> BaseClass;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * [BaseClass 空函数]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">BaseClass</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * [_mixin 混合函数]</span></span><br><span class="line"><span class="comment">	 * @param  &#123;[type]&#125; r [description]</span></span><br><span class="line"><span class="comment">	 * @param  &#123;[type]&#125; s [description]</span></span><br><span class="line"><span class="comment">	 * @return &#123;[type]&#125;   [description]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">_mixin</span>(<span class="params">r, s</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> s) &#123;</span><br><span class="line">			<span class="keyword">if</span> (s.hasOwnProperty(p)) &#123;</span><br><span class="line">				r[p] = s[p]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * [_extend 扩充方法]</span></span><br><span class="line"><span class="comment">	 * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">_extend</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//开关 用来使生成原型时,不调用真正的构成流程init</span></span><br><span class="line">		<span class="keyword">this</span>.initPrototype = <span class="literal">true</span></span><br><span class="line">		<span class="keyword">var</span> prototype = <span class="keyword">new</span> <span class="keyword">this</span>()</span><br><span class="line">		<span class="keyword">this</span>.initPrototype = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> items = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>) || []</span><br><span class="line">		<span class="keyword">var</span> item</span><br><span class="line"></span><br><span class="line">		<span class="comment">//支持混入多个属性，并且支持&#123;&#125;也支持 Function</span></span><br><span class="line">		<span class="keyword">while</span> (item = items.shift()) &#123;</span><br><span class="line">			_mixin(prototype, item.prototype || item)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 这边是返回的类，其实就是我们返回的子类</span></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">SubBaseClass</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (!SubBaseClass.initPrototype &amp;&amp; <span class="keyword">this</span>.init)</span><br><span class="line">				<span class="keyword">this</span>.init.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)<span class="comment">//调用init真正的构造函数</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 赋值原型链，完成继承</span></span><br><span class="line">		SubBaseClass.prototype = prototype</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 改变constructor引用</span></span><br><span class="line">		SubBaseClass.prototype.constructor = SubBaseClass</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 为子类也添加extend方法</span></span><br><span class="line">		SubBaseClass.extend = _extend</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> SubBaseClass</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/19/sublime-常用使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -733,7 +853,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -746,7 +866,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
