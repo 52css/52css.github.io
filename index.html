@@ -232,6 +232,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/js-polyfill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="52css">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/17/js-polyfill/" itemprop="url">js-polyfill</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T11:38:09+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Array</span>.prototype.indexOf) &#123;</span><br><span class="line">  <span class="built_in">Array</span>.prototype.indexOf = <span class="function"><span class="keyword">function</span>(<span class="params">searchElement, fromIndex</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> k;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">null</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'"this" is null or not defined'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">var</span> O = <span class="built_in">Object</span>(<span class="keyword">this</span>);</span><br><span class="line">      <span class="keyword">var</span> len = O.length &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (len === <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">var</span> n = +fromIndex || <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">Math</span>.abs(n) === <span class="literal">Infinity</span>) &#123;</span><br><span class="line">          n = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (n &gt;= len) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      k = <span class="built_in">Math</span>.max(n &gt;= <span class="number">0</span> ? n : len - <span class="built_in">Math</span>.abs(n), <span class="number">0</span>);</span><br><span class="line">      <span class="keyword">while</span> (k &lt; len) &#123;</span><br><span class="line">          <span class="keyword">if</span> (k <span class="keyword">in</span> O &amp;&amp; O[k] === searchElement) &#123;</span><br><span class="line">              <span class="keyword">return</span> k;</span><br><span class="line">          &#125;</span><br><span class="line">          k++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Array</span>.prototype.filter) &#123;</span><br><span class="line">  <span class="built_in">Array</span>.prototype.filter = <span class="function"><span class="keyword">function</span>(<span class="params">fun</span>) </span>&#123;</span><br><span class="line"><span class="meta">      "use strict"</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span> === <span class="keyword">void</span> <span class="number">0</span> || <span class="keyword">this</span> === <span class="literal">null</span>)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>();</span><br><span class="line">      <span class="keyword">var</span> t = <span class="built_in">Object</span>(<span class="keyword">this</span>);</span><br><span class="line">      <span class="keyword">var</span> len = t.length &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> fun !== <span class="string">"function"</span>)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>();</span><br><span class="line">      <span class="keyword">var</span> res = [];</span><br><span class="line">      <span class="keyword">var</span> thisArg = <span class="built_in">arguments</span>.length &gt;= <span class="number">2</span> ? <span class="built_in">arguments</span>[<span class="number">1</span>] : <span class="keyword">void</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (i <span class="keyword">in</span> t) &#123;</span><br><span class="line">              <span class="keyword">var</span> val = t[i];</span><br><span class="line">              <span class="keyword">if</span> (fun.call(thisArg, val, i, t))</span><br><span class="line">                  res.push(val);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'function'</span> !== <span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.reduce) &#123;</span><br><span class="line">  <span class="built_in">Array</span>.prototype.reduce = <span class="function"><span class="keyword">function</span>(<span class="params">callback, opt_initialValue</span>) </span>&#123;</span><br><span class="line"><span class="meta">      'use strict'</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">null</span> === <span class="keyword">this</span> || <span class="string">'undefined'</span> === <span class="keyword">typeof</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(</span><br><span class="line">              <span class="string">'Array.prototype.reduce called on null or undefined'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">'function'</span> !== <span class="keyword">typeof</span> callback) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(callback + <span class="string">' is not a function'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">var</span> index, value,</span><br><span class="line">          length = <span class="keyword">this</span>.length &gt;&gt;&gt; <span class="number">0</span>,</span><br><span class="line">          isValueSet = <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="number">1</span> &lt; <span class="built_in">arguments</span>.length) &#123;</span><br><span class="line">          value = opt_initialValue;</span><br><span class="line">          isValueSet = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (index = <span class="number">0</span>; length &gt; index; ++index) &#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">this</span>.hasOwnProperty(index)) &#123;</span><br><span class="line">              <span class="keyword">if</span> (isValueSet) &#123;</span><br><span class="line">                  value = callback(value, <span class="keyword">this</span>[index], index, <span class="keyword">this</span>);</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  value = <span class="keyword">this</span>[index];</span><br><span class="line">                  isValueSet = <span class="literal">true</span>;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (!isValueSet) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Reduce of empty array with no initial value'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Array</span>.prototype.forEach) &#123;</span><br><span class="line">  <span class="built_in">Array</span>.prototype.forEach = <span class="function"><span class="keyword">function</span>(<span class="params">callback, thisArg</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> T, k;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">null</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">' this is null or not defined'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">var</span> O = <span class="built_in">Object</span>(<span class="keyword">this</span>);</span><br><span class="line">      <span class="keyword">var</span> len = O.length &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">typeof</span> callback !== <span class="string">"function"</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(callback + <span class="string">' is not a function'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">          T = thisArg;</span><br><span class="line">      &#125;</span><br><span class="line">      k = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span> (k &lt; len) &#123;</span><br><span class="line">          <span class="keyword">var</span> kValue;</span><br><span class="line">          <span class="keyword">if</span> (k <span class="keyword">in</span> O) &#123;</span><br><span class="line">              kValue = O[k];</span><br><span class="line">              callback.call(T, kValue, k, O);</span><br><span class="line">          &#125;</span><br><span class="line">          k++;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">String</span>.prototype.trim) &#123;</span><br><span class="line">  <span class="built_in">String</span>.prototype.trim = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g</span>, <span class="string">''</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/js-最简单多级联动复选框/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1417,128 +1536,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/pic-to-base64/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ivan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="52css">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/29/pic-to-base64/" itemprop="url">pic to base64</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T09:24:14+08:00">
-                2018-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="图片转换base64"><a href="#图片转换base64" class="headerlink" title="图片转换base64"></a>图片转换base64</h3><p>简单图片转base64，很简单, 加载图片，图片加载完毕，给canvas画图，再canvas.toDataURL();就行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">getBase64ByImg(<span class="string">''</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">  .then(<span class="function">(<span class="params">canvas</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(canvas.toDataURL());</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [getBase64ByImg description]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; url    [description]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; width  [description]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; height [description]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125;        [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBase64ByImg</span>(<span class="params">url, width, height</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line"></span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</span><br><span class="line">            <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">            <span class="comment">// canvas绘制</span></span><br><span class="line">            canvas.width = width;</span><br><span class="line">            canvas.height = height;</span><br><span class="line">            <span class="comment">// 画布清除</span></span><br><span class="line">            context.clearRect(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">            <span class="comment">// 绘制图片到canvas</span></span><br><span class="line">            context.drawImage(img, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            resolve(canvas);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        img.onerror = reject;</span><br><span class="line">        img.src = url;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>但是这个必须图片支持跨域，返回头包含<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin:*</span><br></pre></td></tr></table></figure></p>
-<p>如果有些图片是第三方，需要二次封装，这样太麻烦，有没有什么可以直接转换？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @Author: weijie</span></span><br><span class="line"><span class="comment"> * @Date:   2018-03-28 21:32:52</span></span><br><span class="line"><span class="comment"> * @Last Modified by:   weijie</span></span><br><span class="line"><span class="comment"> * @Last Modified time: 2018-03-29 09:34:53</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [getBase64 转换url为base64]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; url [description]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125;     [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">getBase64</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getAndEncode(url)</span><br><span class="line">    .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> dataAsUrl(data, mimeType(url));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [parseExtension 处理后缀]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; url [description]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125;     [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseExtension</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> match = <span class="regexp">/\.([^.]*?)$/g</span>.exec(url);</span><br><span class="line">  <span class="keyword">if</span> (match) &#123;</span><br><span class="line">    <span class="keyword">return</span> match[<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [mimes 通用mime]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mimes</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">   * Only WOFF and EOT mime types for fonts are 'real'</span></span><br><span class="line"><span class="comment">   * see http://www.iana.org/assignments/media-types/media-types.xhtml</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">const</span> WOFF = <span class="string">'application/font-woff'</span>;</span><br><span class="line">  <span class="keyword">const</span> JPEG = <span class="string">'image/jpeg'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    woff: WOFF,</span><br><span class="line">    woff2: WOFF,</span><br><span class="line">    ttf: <span class="string">'application/font-truetype'</span>,</span><br><span class="line">    eot: <span class="string">'application/vnd.ms-fontobject'</span>,</span><br><span class="line">    png: <span class="string">'image/png'</span>,</span><br><span class="line">    jpg: JPEG,</span><br><span class="line">    jpeg: JPEG,</span><br><span class="line">    gif: <span class="string">'image/gif'</span>,</span><br><span class="line">    tiff: <span class="string">'image/tiff'</span>,</span><br><span class="line">    svg: <span class="string">'image/svg+xml'</span>,</span><br><span class="line">    mp4: <span class="string">'video/mp4'</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [mimeType 获取mime类型]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; url [description]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125;     [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mimeType</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> extension = parseExtension(url).toLowerCase();</span><br><span class="line">  <span class="keyword">return</span> mimes()[extension] || <span class="string">''</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [dataAsUrl 转换base64]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; content [description]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; type    [description]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125;         [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataAsUrl</span>(<span class="params">content, type</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`data:<span class="subst">$&#123;type&#125;</span>;base64,<span class="subst">$&#123;content&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [getAndEncode 通过获取流形式来得到数据]</span></span><br><span class="line"><span class="comment"> * @param  &#123;[type]&#125; url [description]</span></span><br><span class="line"><span class="comment"> * @return &#123;[type]&#125;     [description]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAndEncode</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> TIMEOUT = <span class="number">30000</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">    request.onreadystatechange = done;</span><br><span class="line">    request.ontimeout = timeout;</span><br><span class="line">    request.responseType = <span class="string">'blob'</span>;</span><br><span class="line">    request.timeout = TIMEOUT;</span><br><span class="line">    request.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</span><br><span class="line">    request.send();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * [done description]</span></span><br><span class="line"><span class="comment">     * @return &#123;Function&#125; [description]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">done</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (request.readyState !== <span class="number">4</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (request.status !== <span class="number">200</span>) &#123;</span><br><span class="line">        fail(<span class="string">`cannot fetch resource: <span class="subst">$&#123;url&#125;</span>, status: <span class="subst">$&#123;request.status&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> encoder = <span class="keyword">new</span> FileReader();</span><br><span class="line">      encoder.onloadend = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> content = encoder.result.split(<span class="regexp">/,/</span>)[<span class="number">1</span>];</span><br><span class="line">        resolve(content);</span><br><span class="line">      &#125;;</span><br><span class="line">      encoder.readAsDataURL(request.response);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * [timeout description]</span></span><br><span class="line"><span class="comment">     * @return &#123;[type]&#125; [description]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">timeout</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      fail(<span class="string">`timeout of <span class="subst">$&#123;TIMEOUT&#125;</span>ms occured while fetching resource: <span class="subst">$&#123;url&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * [fail description]</span></span><br><span class="line"><span class="comment">     * @param  &#123;[type]&#125; message [description]</span></span><br><span class="line"><span class="comment">     * @return &#123;[type]&#125;         [description]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">      resolve(<span class="string">''</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="查看demo"><a href="#查看demo" class="headerlink" title="查看demo"></a><a href="/effect/#/pic-to-base64">查看demo</a></h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1589,7 +1586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1602,7 +1599,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
