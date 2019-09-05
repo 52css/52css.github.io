@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,lib,es6,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JS 技巧（es6）1. String1.1 格式化千分位金钱123const toThousand = num =&amp;gt; num.toString().replace(/\B(?=(\d&amp;#123;3&amp;#125;)+(?!\d))/g, &quot;,&quot;);const money = toThousand(20190214);// money =&amp;gt; &quot;20,190,214&quot; 1.2 生成随机ID1">
+<meta name="keywords" content="js,lib,es6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 结合ES6 技巧">
+<meta property="og:url" content="http://yoursite.com/2019/09/05/Javascript-结合ES6-技巧/index.html">
+<meta property="og:site_name" content="52css">
+<meta property="og:description" content="JS 技巧（es6）1. String1.1 格式化千分位金钱123const toThousand = num =&amp;gt; num.toString().replace(/\B(?=(\d&amp;#123;3&amp;#125;)+(?!\d))/g, &quot;,&quot;);const money = toThousand(20190214);// money =&amp;gt; &quot;20,190,214&quot; 1.2 生成随机ID1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-05T02:00:44.463Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript 结合ES6 技巧">
+<meta name="twitter:description" content="JS 技巧（es6）1. String1.1 格式化千分位金钱123const toThousand = num =&amp;gt; num.toString().replace(/\B(?=(\d&amp;#123;3&amp;#125;)+(?!\d))/g, &quot;,&quot;);const money = toThousand(20190214);// money =&amp;gt; &quot;20,190,214&quot; 1.2 生成随机ID1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/05/Javascript-结合ES6-技巧/">
+
+
+
+
+
+  <title>Javascript 结合ES6 技巧 | 52css</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">52css</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个前端，一个人生</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/Javascript-结合ES6-技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="52css">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript 结合ES6 技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-05T09:53:26+08:00">
+                2019-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JS-技巧（es6）"><a href="#JS-技巧（es6）" class="headerlink" title="JS 技巧（es6）"></a>JS 技巧（es6）</h1><h2 id="1-String"><a href="#1-String" class="headerlink" title="1. String"></a>1. String</h2><h3 id="1-1-格式化千分位金钱"><a href="#1-1-格式化千分位金钱" class="headerlink" title="1.1 格式化千分位金钱"></a>1.1 格式化千分位金钱</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toThousand = <span class="function"><span class="params">num</span> =&gt;</span> num.toString().replace(<span class="regexp">/\B(?=(\d&#123;3&#125;)+(?!\d))/g</span>, <span class="string">","</span>);</span><br><span class="line"><span class="keyword">const</span> money = toThousand(<span class="number">20190214</span>);</span><br><span class="line"><span class="comment">// money =&gt; "20,190,214"</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2-生成随机ID"><a href="#1-2-生成随机ID" class="headerlink" title="1.2 生成随机ID"></a>1.2 生成随机ID</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> randomStr = <span class="function"><span class="params">len</span> =&gt;</span> <span class="built_in">Math</span>.random().toString(<span class="number">36</span>).substr(<span class="number">3</span>, len);</span><br><span class="line"><span class="keyword">const</span> id = randomStr(<span class="number">10</span>);</span><br><span class="line"><span class="comment">// id =&gt; "jg7zpgiqva"</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3-生成随机HEX色值"><a href="#1-3-生成随机HEX色值" class="headerlink" title="1.3 生成随机HEX色值"></a>1.3 生成随机HEX色值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> randomColor = <span class="function"><span class="params">()</span> =&gt;</span> <span class="string">"#"</span> + <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">0xffffff</span>).toString(<span class="number">16</span>).padEnd(<span class="number">6</span>, <span class="string">"0"</span>);</span><br><span class="line"><span class="keyword">const</span> color = randomColor();</span><br><span class="line"><span class="comment">// color =&gt; "#f03665"</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-4-生成星级评分"><a href="#1-4-生成星级评分" class="headerlink" title="1.4 生成星级评分"></a>1.4 生成星级评分</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> startScore = <span class="function"><span class="params">rate</span> =&gt;</span> <span class="string">"★★★★★☆☆☆☆☆"</span>.slice(<span class="number">5</span> - rate, <span class="number">10</span> - rate);</span><br><span class="line"><span class="keyword">const</span> start = startScore(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// start =&gt; "★★★☆☆"</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-5-字符串模板替换"><a href="#1-5-字符串模板替换" class="headerlink" title="1.5 字符串模板替换"></a>1.5 字符串模板替换</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  name: <span class="string">'John'</span>,</span><br><span class="line">  surname: <span class="string">'Doe'</span>,</span><br><span class="line">  details: &#123;</span><br><span class="line">    email: <span class="string">'john@doe.com'</span>,</span><br><span class="line">    displayName: <span class="string">'SuperCoolJohn'</span>,</span><br><span class="line">    joined: <span class="string">'2016-05-05'</span>,</span><br><span class="line">    image: <span class="string">'path-to-the-image'</span>,</span><br><span class="line">    followers: <span class="number">45</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> printUserInfo = <span class="function">(<span class="params">user</span>) =&gt;</span> &#123; </span><br><span class="line">  <span class="keyword">const</span> text = <span class="string">`The user is <span class="subst">$&#123;user.name&#125;</span> <span class="subst">$&#123;user.surname&#125;</span>. Email: <span class="subst">$&#123;user.details.email&#125;</span>. Display Name: <span class="subst">$&#123;user.details.displayName&#125;</span>. <span class="subst">$&#123;user.name&#125;</span> has <span class="subst">$&#123;user.details.followers&#125;</span> followers.`</span></span><br><span class="line">  <span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printUserInfo(user);</span><br><span class="line"><span class="comment">// 输出 'The user is John Doe. Email: john@doe.com. Display Name: SuperCoolJohn. John has 45 followers.'</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-6-补零"><a href="#1-6-补零" class="headerlink" title="1.6 补零"></a>1.6 补零</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// es5  </span></span><br><span class="line"><span class="comment">// const addZero1 = (num, len = 2) =&gt; (`0$&#123;num&#125;`).slice(-len)</span></span><br><span class="line"><span class="keyword">const</span> fillZero = <span class="function">(<span class="params">num, len = <span class="number">2</span></span>) =&gt;</span> num.toString().padStart(len, <span class="string">"0"</span>);</span><br><span class="line"><span class="keyword">const</span> num = fillZero(<span class="number">169</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// num =&gt; "00169"</span></span><br><span class="line"><span class="keyword">const</span> num2 = fillZero(<span class="number">9</span>);</span><br><span class="line"><span class="comment">// num2 = "09"</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-7-toNumber"><a href="#1-7-toNumber" class="headerlink" title="1.7 toNumber"></a>1.7 toNumber</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只对null、""、false、数值字符串有效</span></span><br><span class="line"><span class="keyword">const</span> num1 = +<span class="literal">null</span>;</span><br><span class="line"><span class="keyword">const</span> num2 = +<span class="string">""</span>;</span><br><span class="line"><span class="keyword">const</span> num3 = +<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">const</span> num4 = +<span class="string">"169"</span>;</span><br><span class="line"><span class="comment">// num1 num2 num3 num4 =&gt; 0 0 0 169</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-8-格式化JSON代码"><a href="#1-8-格式化JSON代码" class="headerlink" title="1.8 格式化JSON代码"></a>1.8 格式化JSON代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(&#123; <span class="attr">alpha</span>: <span class="string">'A'</span>, <span class="attr">beta</span>: <span class="string">'B'</span> &#125;, <span class="literal">null</span>, <span class="string">'4'</span>));</span><br><span class="line"><span class="comment">// Result:</span></span><br><span class="line"><span class="comment">// '&#123;</span></span><br><span class="line"><span class="comment">//     "alpha": A,</span></span><br><span class="line"><span class="comment">//     "beta": B</span></span><br><span class="line"><span class="comment">// &#125;'</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-Number"><a href="#2-Number" class="headerlink" title="2. Number"></a>2. Number</h2><h3 id="2-1-取整"><a href="#2-1-取整" class="headerlink" title="2.1 取整"></a>2.1 取整</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代替正数的Math.floor()，代替负数的Math.ceil()</span></span><br><span class="line"><span class="keyword">const</span> num1 = ~~ <span class="number">1.69</span>;</span><br><span class="line"><span class="keyword">const</span> num2 = <span class="number">1.69</span> | <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> num3 = <span class="number">1.69</span> &gt;&gt; <span class="number">0</span>;</span><br><span class="line"><span class="comment">// num1 num2 num3 =&gt; 1 1 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-四舍五入"><a href="#2-2-四舍五入" class="headerlink" title="2.2 四舍五入"></a>2.2 四舍五入</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> roundNum = <span class="function">(<span class="params">num, decimal = <span class="number">2</span></span>) =&gt;</span> <span class="built_in">Math</span>.round(num * <span class="number">10</span> ** decimal) / <span class="number">10</span> ** decimal;</span><br><span class="line"><span class="keyword">const</span> num = roundNum(<span class="number">1.69</span>, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// num =&gt; 1.7</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-计算奇数偶数"><a href="#2-3-计算奇数偶数" class="headerlink" title="2.3 计算奇数偶数"></a>2.3 计算奇数偶数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> num = <span class="number">100</span> % <span class="number">2</span></span><br><span class="line"><span class="keyword">const</span> num2 = <span class="number">100</span> &amp; <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-4-随机数"><a href="#2-4-随机数" class="headerlink" title="2.4 随机数"></a>2.4 随机数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> randomNum = <span class="function">(<span class="params">min, max</span>) =&gt;</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (max - min + <span class="number">1</span>)) + min;</span><br><span class="line"><span class="keyword">const</span> num = randomNum(<span class="number">1</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-转字符串"><a href="#2-5-转字符串" class="headerlink" title="2.5 转字符串"></a>2.5 转字符串</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> val = <span class="number">1</span> + <span class="string">""</span>;</span><br><span class="line"><span class="built_in">console</span>.log(val); <span class="comment">// Result: "1"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> val); <span class="comment">// Result: "string"</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-6-幂次方"><a href="#2-6-幂次方" class="headerlink" title="2.6 幂次方"></a>2.6 幂次方</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">2</span> ** <span class="number">3</span>); <span class="comment">// Result: 8</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, n);</span><br><span class="line"><span class="number">2</span> &lt;&lt; (n - <span class="number">1</span>);</span><br><span class="line"><span class="number">2</span>**n;</span><br></pre></td></tr></table></figure>
+<h3 id="2-7-numberEq-相等"><a href="#2-7-numberEq-相等" class="headerlink" title="2.7 numberEq 相等"></a>2.7 numberEq 相等</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">numberEq</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.abs(a-b) &lt; <span class="built_in">Number</span>.EPSILON;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a=<span class="number">0.1</span>+<span class="number">0.2</span>,b=<span class="number">0.3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Number.EPSILON:"</span>,numEqual(a,b));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-8-isNumber"><a href="#2-8-isNumber" class="headerlink" title="2.8 isNumber"></a>2.8 <strong>isNumber</strong></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNumber</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !<span class="built_in">isNaN</span>(<span class="built_in">parseFloat</span>(n)) &amp;&amp; <span class="built_in">isFinite</span>(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-9-保留2位小数"><a href="#2-9-保留2位小数" class="headerlink" title="2.9 保留2位小数"></a>2.9 保留2位小数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> roundNum = <span class="function">(<span class="params">num, decimal = <span class="number">2</span></span>) =&gt;</span> <span class="built_in">Math</span>.round(num * <span class="number">10</span> ** decimal) / <span class="number">10</span> ** decimal;</span><br><span class="line"><span class="keyword">const</span> toFixed = <span class="function">(<span class="params">num, decimal = <span class="number">2</span></span>) =&gt;</span> (+roundNum(num, decimal)).toFixed(decimal)</span><br></pre></td></tr></table></figure>
+<h2 id="3-Boolean"><a href="#3-Boolean" class="headerlink" title="3. Boolean"></a>3. Boolean</h2><h3 id="3-1-转换boolean"><a href="#3-1-转换boolean" class="headerlink" title="3.1 转换boolean"></a>3.1 转换boolean</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'123'</span></span><br><span class="line"><span class="keyword">var</span> bA = !!a;</span><br></pre></td></tr></table></figure>
+<h2 id="4-Date"><a href="#4-Date" class="headerlink" title="4. Date"></a>4. Date</h2><h3 id="4-1-时间戳"><a href="#4-1-时间戳" class="headerlink" title="4.1 时间戳"></a>4.1 时间戳</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timestamp = +<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2019-02-14"</span>);</span><br><span class="line"><span class="comment">// timestamp =&gt; 1550102400000</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-Array"><a href="#5-Array" class="headerlink" title="5. Array"></a>5. Array</h2><h3 id="5-1-获取数据最大，最小值"><a href="#5-1-获取数据最大，最小值" class="headerlink" title="5.1 获取数据最大，最小值"></a>5.1 获取数据最大，最小值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrMin = <span class="function"><span class="params">arr</span> =&gt;</span> <span class="built_in">Math</span>.min(...arr)</span><br><span class="line"><span class="keyword">const</span> arrMax = <span class="function"><span class="params">arr</span> =&gt;</span> <span class="built_in">Math</span>.max(...arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">const</span> min = arrMin(arr) <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">const</span> max = arrMax(arr) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-2-克隆数组"><a href="#5-2-克隆数组" class="headerlink" title="5.2 克隆数组"></a>5.2 克隆数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> arr = [..._arr];</span><br><span class="line"><span class="comment">// arr =&gt; [0, 1, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-3-合并数组"><a href="#5-3-合并数组" class="headerlink" title="5.3 合并数组"></a>5.3 合并数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> arr = [...arr1, ...arr2];</span><br><span class="line"><span class="comment">// arr =&gt; [0, 1, 2, 3, 4, 5];</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-4-去重数组"><a href="#5-4-去重数组" class="headerlink" title="5.4 去重数组"></a>5.4 去重数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [...new <span class="built_in">Set</span>([<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="literal">null</span>, <span class="literal">null</span>])];</span><br><span class="line"><span class="comment">// arr =&gt; [0, 1, null]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-5-数组随机"><a href="#5-5-数组随机" class="headerlink" title="5.5 数组随机"></a>5.5 数组随机</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> randomArr = <span class="function"><span class="params">arr</span> =&gt;</span> arr.slice().sort(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Math</span>.random() - <span class="number">.5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="keyword">const</span> rArr = randomArr(arr)</span><br><span class="line"><span class="comment">// arr =&gt; [3, 4, 0, 5, 1, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-6-清空数组"><a href="#5-6-清空数组" class="headerlink" title="5.6 清空数组"></a>5.6 清空数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">arr.length = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// arr =&gt; []</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-7-截断数组"><a href="#5-7-截断数组" class="headerlink" title="5.7 截断数组"></a>5.7 截断数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">arr.length = <span class="number">2</span>;</span><br><span class="line"><span class="comment">// arr =&gt; [0, 1]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-8-截取数组"><a href="#5-8-截取数组" class="headerlink" title="5.8 截取数组"></a>5.8 截取数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">arr.slice(<span class="number">1</span>, <span class="number">-1</span>) <span class="comment">// 正常正数和负数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取数组中的最后一项</span></span><br><span class="line">arr.slice(<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="5-9-交换赋值"><a href="#5-9-交换赋值" class="headerlink" title="5.9 交换赋值"></a>5.9 交换赋值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line">[a, b] = [b, a];</span><br><span class="line"><span class="comment">// a b =&gt; 1 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组排序(上移，下移，拖拽排序)</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">[arr[<span class="number">0</span>], arr[<span class="number">4</span>]] = [arr[<span class="number">4</span>], arr[<span class="number">0</span>]]</span><br><span class="line"><span class="comment">// arr =&gt; [5, 2, 3, 4, 1]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-10-过滤空值"><a href="#5-10-过滤空值" class="headerlink" title="5.10 过滤空值"></a>5.10 过滤空值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="literal">undefined</span>, <span class="literal">null</span>, <span class="string">""</span>, <span class="number">0</span>, <span class="literal">false</span>, <span class="literal">NaN</span>, <span class="number">1</span>, <span class="number">2</span>].filter(<span class="built_in">Boolean</span>);</span><br><span class="line"><span class="comment">// arr =&gt; [1, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-11-数据Prmose按顺序执行"><a href="#5-11-数据Prmose按顺序执行" class="headerlink" title="5.11 数据Prmose按顺序执行"></a>5.11 数据Prmose按顺序执行</h3><h3 id="5-12-数组去重"><a href="#5-12-数组去重" class="headerlink" title="5.12 数组去重"></a>5.12 数组去重</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> uniqueArr = <span class="function"><span class="params">arr</span> =&gt;</span> [...new <span class="built_in">Set</span>(arr)];</span><br><span class="line"><span class="keyword">const</span> cars = [</span><br><span class="line">    <span class="string">'Mazda'</span>, </span><br><span class="line">    <span class="string">'Ford'</span>, </span><br><span class="line">    <span class="string">'Renault'</span>, </span><br><span class="line">    <span class="string">'Opel'</span>, </span><br><span class="line">    <span class="string">'Mazda'</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> uniqueWithSpreadOperator = uniqueArr(cars);</span><br><span class="line"><span class="comment">// uniqueWithSpreadOperator =&gt; ["Mazda", "Ford", "Renault", "Opel"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-13-数组首部插入成员"><a href="#5-13-数组首部插入成员" class="headerlink" title="5.13 数组首部插入成员"></a>5.13 数组首部插入成员</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>]; <span class="comment">// 以下方法任选一种</span></span><br><span class="line">arr.unshift(<span class="number">0</span>);</span><br><span class="line">arr = [<span class="number">0</span>].concat(arr);</span><br><span class="line">arr = [<span class="number">0</span>, ...arr];</span><br><span class="line"><span class="comment">// arr =&gt; [0, 1, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-14-数组尾部插入成员"><a href="#5-14-数组尾部插入成员" class="headerlink" title="5.14 数组尾部插入成员"></a>5.14 数组尾部插入成员</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">0</span>, <span class="number">1</span>]; <span class="comment">// 以下方法任选一种</span></span><br><span class="line">arr.push(<span class="number">2</span>);</span><br><span class="line">arr.concat(<span class="number">2</span>);</span><br><span class="line">arr[arr.length] = <span class="number">2</span>;</span><br><span class="line">arr = [...arr, <span class="number">2</span>];</span><br><span class="line"><span class="comment">// arr =&gt; [0, 1, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-15-数组转map"><a href="#5-15-数组转map" class="headerlink" title="5.15 数组转map"></a>5.15 数组转map</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [&#123;<span class="attr">id</span>: <span class="number">1</span>&#125;, &#123;<span class="attr">id</span>: <span class="number">2</span>&#125;]</span><br><span class="line"><span class="keyword">const</span> arrObjectMap = <span class="function">(<span class="params">arr, key = <span class="string">'id'</span></span>) =&gt;</span> arr.reduct(<span class="function">(<span class="params">rtv, item</span>) =&gt;</span> &#123;</span><br><span class="line">    rtv[item[key]] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> rtv;</span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line"><span class="keyword">const</span> map = arrObjectMap(arr, <span class="string">'id'</span>)</span><br><span class="line"><span class="comment">// map =&gt; &#123;1: true, 2: true&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-16-数组结构-通过object来，可以不用定义无用的变量"><a href="#5-16-数组结构-通过object来，可以不用定义无用的变量" class="headerlink" title="5.16 数组结构(通过object来，可以不用定义无用的变量)"></a>5.16 数组结构(通过object来，可以不用定义无用的变量)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="number">2</span>: c &#125; = arr;</span><br><span class="line"><span class="comment">// c =&gt; 2</span></span><br><span class="line"><span class="keyword">const</span> [e, f, g] = arr</span><br><span class="line"><span class="comment">// g =&gt; 2 // 这样定义了无用的变量</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-17-解构数组成员默认值"><a href="#5-17-解构数组成员默认值" class="headerlink" title="5.17 解构数组成员默认值"></a>5.17 解构数组成员默认值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> [a, b, c = <span class="number">3</span>, d = <span class="number">4</span>] = arr;</span><br><span class="line"><span class="comment">// a b c d =&gt; 0 1 2 4</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-18-获取随机数组成员"><a href="#5-18-获取随机数组成员" class="headerlink" title="5.18 获取随机数组成员"></a>5.18 获取随机数组成员</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> randomOne = <span class="function"><span class="params">arr</span> =&gt;</span> arr[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * arr.length)];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> randomItem = randomOne(arr);</span><br><span class="line"><span class="comment">// randomItem =&gt; 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-19-创建指定长度数组"><a href="#5-19-创建指定长度数组" class="headerlink" title="5.19 创建指定长度数组"></a>5.19 创建指定长度数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = <span class="function"><span class="params">len</span> =&gt;</span> [...new <span class="built_in">Array</span>(len).keys()];</span><br><span class="line"><span class="keyword">const</span> arr = list(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// arr =&gt; [0, 1, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-20-创建指定长度且值相等的数组"><a href="#5-20-创建指定长度且值相等的数组" class="headerlink" title="5.20 创建指定长度且值相等的数组"></a>5.20 创建指定长度且值相等的数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="number">0</span>)</span><br><span class="line"><span class="comment">// arr =&gt; [0, 0, 0]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-21-数组排序"><a href="#5-21-数组排序" class="headerlink" title="5.21 数组排序"></a>5.21 数组排序</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">14.3</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">64</span>].sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b;   <span class="comment">//从小到大排</span></span><br><span class="line">  <span class="comment">// return b - a;   //从大到小排</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//[1, 8, 14.3, 64]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象数组</span></span><br><span class="line"><span class="keyword">var</span> arr = [&#123;   <span class="comment">//对象数组</span></span><br><span class="line">    num: <span class="number">1</span>,</span><br><span class="line">    text: <span class="string">'num1'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    num: <span class="number">5</span>,</span><br><span class="line">    text: <span class="string">'num2'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    num: <span class="number">6</span>,</span><br><span class="line">    text: <span class="string">'num3'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    num: <span class="number">3</span>,</span><br><span class="line">    text: <span class="string">'num4'</span></span><br><span class="line">&#125;];   </span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.num - b.num;   <span class="comment">//从小到大排</span></span><br><span class="line">    <span class="keyword">return</span> b.num - a.num;   <span class="comment">//从大到小排</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="5-22-扁平化多维数组"><a href="#5-22-扁平化多维数组" class="headerlink" title="5.22 扁平化多维数组"></a>5.22 扁平化多维数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flattenArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> flattened = [].concat(...arr);</span><br><span class="line">  <span class="keyword">return</span> flattened.some(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">Array</span>.isArray(item)) ? </span><br><span class="line">    flattenArray(flattened) : flattened;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">11</span>, [<span class="number">22</span>, <span class="number">33</span>], [<span class="number">44</span>, [<span class="number">55</span>, <span class="number">66</span>, [<span class="number">77</span>, [<span class="number">88</span>]], <span class="number">99</span>]]];</span><br><span class="line"><span class="keyword">const</span> flatArr = flattenArray(arr); </span><br><span class="line"><span class="comment">//=&gt; [11, 22, 33, 44, 55, 66, 77, 88, 99]</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-23-使用-Array-includes-来处理多重条件"><a href="#5-23-使用-Array-includes-来处理多重条件" class="headerlink" title="5.23 使用 Array.includes 来处理多重条件"></a>5.23 使用 Array.includes 来处理多重条件</h3><p>以前的判断方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 条件语句</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">fruit</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (fruit == <span class="string">'apple'</span> || fruit == <span class="string">'strawberry'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'red'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在的方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">fruit</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 把条件提取到数组中</span></span><br><span class="line">  <span class="keyword">const</span> redFruits = [<span class="string">'apple'</span>, <span class="string">'strawberry'</span>, <span class="string">'cherry'</span>, <span class="string">'cranberries'</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (redFruits.includes(fruit)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'red'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-Object"><a href="#6-Object" class="headerlink" title="6. Object"></a>6. Object</h2><h3 id="6-1-判断是否是Object"><a href="#6-1-判断是否是Object" class="headerlink" title="6.1 判断是否是Object"></a>6.1 判断是否是Object</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isObject = <span class="function"><span class="params">obj</span> =&gt;</span> <span class="built_in">Object</span>.prototype.toString.call(obj).slice(<span class="number">-7</span>, <span class="number">-1</span>) === <span class="string">'Object'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isObj = isObject(&#123;&#125;) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-2-判断Object是否是空"><a href="#6-2-判断Object是否是空" class="headerlink" title="6.2 判断Object是否是空"></a>6.2 判断Object是否是空</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isEmptyObject = <span class="function"><span class="params">obj</span> =&gt;</span> isObject(obj) &amp;&amp; <span class="built_in">Object</span>.keys(obj).length === <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isEmptyObj = isEmptyObject(&#123;&#125;) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-3-克隆对象-不支持自己指向自己"><a href="#6-3-克隆对象-不支持自己指向自己" class="headerlink" title="6.3 克隆对象(不支持自己指向自己)"></a>6.3 克隆对象(不支持自己指向自己)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _obj = &#123; <span class="attr">a</span>: <span class="number">0</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: <span class="number">2</span> &#125;; <span class="comment">// 以下方法任选一种</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123; ..._obj &#125;;</span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(_obj));</span><br><span class="line"><span class="comment">// obj =&gt; &#123; a: 0, b: 1, c: 2 &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-4-合并对象"><a href="#6-4-合并对象" class="headerlink" title="6.4 合并对象"></a>6.4 合并对象</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj1 = &#123; <span class="attr">a</span>: <span class="number">0</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> obj2 = &#123; <span class="attr">c</span>: <span class="number">3</span>, <span class="attr">d</span>: <span class="number">4</span>, <span class="attr">e</span>: <span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> obj = &#123; ...obj1, ...obj2 &#125;;</span><br><span class="line"><span class="comment">// obj =&gt; &#123; a: 0, b: 1, c: 3, d: 4, e: 5 &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-5-对象字面量"><a href="#6-5-对象字面量" class="headerlink" title="6.5 对象字面量"></a>6.5 对象字面量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> env = <span class="string">"prod"</span>;</span><br><span class="line"><span class="keyword">const</span> link = &#123;</span><br><span class="line">    dev: <span class="string">"Development Address"</span>,</span><br><span class="line">    test: <span class="string">"Testing Address"</span>,</span><br><span class="line">    prod: <span class="string">"Production Address"</span></span><br><span class="line">&#125;[env];</span><br><span class="line"><span class="comment">// link =&gt; "Production Address"</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-6-对象变量属性"><a href="#6-6-对象变量属性" class="headerlink" title="6.6 对象变量属性"></a>6.6 对象变量属性</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> flag = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    a: <span class="number">0</span>,</span><br><span class="line">    b: <span class="number">1</span>,</span><br><span class="line">    [flag ? <span class="string">"c"</span> : <span class="string">"d"</span>]: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// obj =&gt; &#123; a: 0, b: 1, d: 2 &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-7-创建纯空对象"><a href="#6-7-创建纯空对象" class="headerlink" title="6.7 创建纯空对象"></a>6.7 创建纯空对象</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">// obj =&gt; &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-8-删除对象无用属性"><a href="#6-8-删除对象无用属性" class="headerlink" title="6.8 删除对象无用属性"></a>6.8 删除对象无用属性</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">a</span>: <span class="number">0</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: <span class="number">2</span> &#125;; <span class="comment">// 只想拿b和c</span></span><br><span class="line"><span class="keyword">const</span> &#123; a, ...rest &#125; = obj;</span><br><span class="line"><span class="comment">// rest =&gt; &#123; b: 1, c: 2 &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-9-解构对象属性嵌套"><a href="#6-9-解构对象属性嵌套" class="headerlink" title="6.9 解构对象属性嵌套"></a>6.9 解构对象属性嵌套</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">a</span>: <span class="number">0</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: &#123; <span class="attr">d</span>: <span class="number">2</span>, <span class="attr">e</span>: <span class="number">3</span> &#125; &#125;;</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">c</span>: &#123; d, e &#125; &#125; = obj;</span><br><span class="line"><span class="comment">// d e =&gt; 2 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-10-解构对象属性别名"><a href="#6-10-解构对象属性别名" class="headerlink" title="6.10 解构对象属性别名"></a>6.10 解构对象属性别名</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">a</span>: <span class="number">0</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> &#123; a, <span class="attr">b</span>: d, <span class="attr">c</span>: e &#125; = obj;</span><br><span class="line"><span class="comment">// a d e =&gt; 0 1 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-11-解构对象属性默认值"><a href="#6-11-解构对象属性默认值" class="headerlink" title="6.11 解构对象属性默认值"></a>6.11 解构对象属性默认值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">a</span>: <span class="number">0</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> &#123; a, b = <span class="number">2</span>, d = <span class="number">3</span> &#125; = obj;</span><br><span class="line"><span class="comment">// a b d =&gt; 0 1 3</span></span><br></pre></td></tr></table></figure>
+<p>我们常用的写res.data 结构使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="attr">data</span>: &#123; <span class="attr">listObj</span>: data = [] &#125; &#125; = <span class="keyword">await</span> promise()</span><br></pre></td></tr></table></figure>
+<h2 id="7-Function"><a href="#7-Function" class="headerlink" title="7. Function"></a>7. Function</h2><h3 id="7-1-隐式返回值"><a href="#7-1-隐式返回值" class="headerlink" title="7.1 隐式返回值"></a>7.1 隐式返回值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只能用于单语句返回值箭头函数，如果返回值是对象必须使用()包住</span></span><br><span class="line"><span class="keyword">const</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"I Love "</span> + name;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 换成</span></span><br><span class="line"><span class="keyword">const</span> func = <span class="function"><span class="params">name</span> =&gt;</span> <span class="string">"I Love "</span> + name;</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-检测非空参数"><a href="#7-2-检测非空参数" class="headerlink" title="7.2 检测非空参数"></a>7.2 检测非空参数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">required</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"param is required"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">name = required(</span>)) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"I Love "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line">func(); <span class="comment">// "param is required"</span></span><br><span class="line">func(<span class="string">"You"</span>); <span class="comment">// "I Love You"</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-3-优雅处理Async-Await参数"><a href="#7-3-优雅处理Async-Await参数" class="headerlink" title="7.3 优雅处理Async/Await参数"></a>7.3 优雅处理Async/Await参数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">errorCaptured</span>(<span class="params">asyncFunc</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> res = <span class="keyword">await</span> asyncFunc()</span><br><span class="line">        <span class="keyword">return</span> [<span class="literal">null</span>, res]</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ex) &#123;</span><br><span class="line">        <span class="keyword">return</span> [ex, <span class="literal">null</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">Math</span>.random() &gt; <span class="number">0.5</span> ? resolve(<span class="string">'success'</span>) : reject(<span class="string">'error'</span>)</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> [err, res] = <span class="keyword">await</span> errorCaptured(asyncFunc)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'res'</span>, res)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'err'</span>, err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
+<h3 id="7-4-优雅处理多个函数返回值"><a href="#7-4-优雅处理多个函数返回值" class="headerlink" title="7.4 优雅处理多个函数返回值"></a>7.4 优雅处理多个函数返回值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.all([</span><br><span class="line">        fetch(<span class="string">"/user"</span>),</span><br><span class="line">        fetch(<span class="string">"/comment"</span>)</span><br><span class="line">    ]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> [user, comment] = <span class="keyword">await</span> func(); <span class="comment">// 需在async包围下使用</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-5-获取函数参数"><a href="#7-5-获取函数参数" class="headerlink" title="7.5 获取函数参数"></a>7.5 获取函数参数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useCall</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(args)</span><br><span class="line">&#125;</span><br><span class="line">useCall(<span class="string">'Bob Dylan'</span>, <span class="string">'Bob Marley'</span>, <span class="string">'Steve Vai'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="7-6-利用chunk函数，执行只执行一次函数"><a href="#7-6-利用chunk函数，执行只执行一次函数" class="headerlink" title="7.6 利用chunk函数，执行只执行一次函数"></a>7.6 利用chunk函数，执行只执行一次函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">once</span>(<span class="params">fn, context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fn) &#123;</span><br><span class="line">      result = fn.apply(context || <span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">      fn = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line"><span class="keyword">var</span> canOnlyFireOnce = once(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'只触发一次！'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">canOnlyFireOnce(); <span class="comment">// "只触发一次"</span></span><br><span class="line">canOnlyFireOnce(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-7-防抖"><a href="#7-7-防抖" class="headerlink" title="7.7 防抖"></a>7.7 防抖</h3><h3 id="7-8-节流"><a href="#7-8-节流" class="headerlink" title="7.8 节流"></a>7.8 节流</h3><h2 id="8-DOM"><a href="#8-DOM" class="headerlink" title="8. DOM"></a>8. DOM</h2><h3 id="8-1-过滤XSS"><a href="#8-1-过滤XSS" class="headerlink" title="8.1 过滤XSS"></a>8.1 过滤XSS</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterXss</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> elem = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">    elem.innerText = content;</span><br><span class="line">    <span class="keyword">const</span> result = elem.innerHTML;</span><br><span class="line">    elem = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="9-BOM"><a href="#9-BOM" class="headerlink" title="9. BOM"></a>9. BOM</h2><h3 id="9-1-操作URL查询参数"><a href="#9-1-操作URL查询参数" class="headerlink" title="9.1 操作URL查询参数"></a>9.1 操作URL查询参数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> searchParams = <span class="function">(<span class="params">url = location.search</span>) =&gt;</span> <span class="keyword">new</span> URLSearchParams(url.replace(<span class="regexp">/\?/ig</span>, <span class="string">""</span>)); </span><br><span class="line"><span class="comment">// location.search = "?name=young&amp;sex=male"</span></span><br><span class="line"><span class="keyword">const</span> params = searchParams(<span class="string">'?name=young&amp;sex=male'</span>);</span><br><span class="line">params.has(<span class="string">"name"</span>); <span class="comment">// true</span></span><br><span class="line">params.get(<span class="string">"sex"</span>); <span class="comment">// "male"</span></span><br></pre></td></tr></table></figure>
+<h3 id="9-2-存取LocalStorage"><a href="#9-2-存取LocalStorage" class="headerlink" title="9.2 存取LocalStorage"></a>9.2 存取LocalStorage</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> love = <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">"love"</span>));</span><br><span class="line">localStorage.setItem(<span class="string">"love"</span>, <span class="built_in">JSON</span>.stringify(<span class="string">"I Love You"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="9-3-设置微信title"><a href="#9-3-设置微信title" class="headerlink" title="9.3 设置微信title"></a>9.3 设置微信title</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setTitle</span>(<span class="params">title</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.title = title;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/ip(hone|od|ad)/i</span>.test(navigator.userAgent)) &#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">    i.src = <span class="string">'/favicon.ico'</span>;</span><br><span class="line">    i.style.display = <span class="string">'none'</span>;</span><br><span class="line">    i.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        i.remove();</span><br><span class="line">      &#125;, <span class="number">9</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTitle(<span class="string">"要修改的标题"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="9-4-获取一个链接的绝对地址"><a href="#9-4-获取一个链接的绝对地址" class="headerlink" title="9.4 获取一个链接的绝对地址"></a>9.4 获取一个链接的绝对地址</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getAbsoluteUrl = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!a) a = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">    a.href = url;</span><br><span class="line">    <span class="keyword">return</span> a.href;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line">getAbsoluteUrl(<span class="string">"/something"</span>); <span class="comment">//https://rockjins.github.io/something</span></span><br></pre></td></tr></table></figure>
+<h2 id="10-其他"><a href="#10-其他" class="headerlink" title="10. 其他"></a>10. 其他</h2><h3 id="10-1-颜色混合"><a href="#10-1-颜色混合" class="headerlink" title="10.1 颜色混合"></a>10.1 颜色混合</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colourBlend = <span class="function">(<span class="params">c1, c2, ratio</span>) =&gt;</span> &#123;</span><br><span class="line">    ratio = <span class="built_in">Math</span>.max(<span class="built_in">Math</span>.min(<span class="built_in">Number</span>(ratio), <span class="number">1</span>), <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">let</span> r1 = <span class="built_in">parseInt</span>(c1.substring(<span class="number">1</span>, <span class="number">3</span>), <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">let</span> g1 = <span class="built_in">parseInt</span>(c1.substring(<span class="number">3</span>, <span class="number">5</span>), <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">let</span> b1 = <span class="built_in">parseInt</span>(c1.substring(<span class="number">5</span>, <span class="number">7</span>), <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">let</span> r2 = <span class="built_in">parseInt</span>(c2.substring(<span class="number">1</span>, <span class="number">3</span>), <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">let</span> g2 = <span class="built_in">parseInt</span>(c2.substring(<span class="number">3</span>, <span class="number">5</span>), <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">let</span> b2 = <span class="built_in">parseInt</span>(c2.substring(<span class="number">5</span>, <span class="number">7</span>), <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">let</span> r = <span class="built_in">Math</span>.round(r1 * (<span class="number">1</span> - ratio) + r2 * ratio)</span><br><span class="line">    <span class="keyword">let</span> g = <span class="built_in">Math</span>.round(g1 * (<span class="number">1</span> - ratio) + g2 * ratio)</span><br><span class="line">    <span class="keyword">let</span> b = <span class="built_in">Math</span>.round(b1 * (<span class="number">1</span> - ratio) + b2 * ratio)</span><br><span class="line">    r = (<span class="string">'0'</span> + (r || <span class="number">0</span>).toString(<span class="number">16</span>)).slice(<span class="number">-2</span>)</span><br><span class="line">    g = (<span class="string">'0'</span> + (g || <span class="number">0</span>).toString(<span class="number">16</span>)).slice(<span class="number">-2</span>)</span><br><span class="line">    b = (<span class="string">'0'</span> + (b || <span class="number">0</span>).toString(<span class="number">16</span>)).slice(<span class="number">-2</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'#'</span> + r + g + b</span><br><span class="line">&#125;</span><br><span class="line">colourBlend(<span class="string">'#ff0000'</span>, <span class="string">'#3333ff'</span>, <span class="number">0.5</span>) <span class="comment">// "#991a80"</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-2-判断是否为质数"><a href="#10-2-判断是否为质数" class="headerlink" title="10.2 判断是否为质数"></a>10.2 判断是否为质数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mathIsPrime = <span class="function"><span class="params">n</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span> || n === <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n) || n &lt;= <span class="number">1</span> || n % <span class="number">1</span> != <span class="number">0</span> || n % <span class="number">2</span> == <span class="number">0</span> || n % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">6</span>; x &lt;= <span class="built_in">Math</span>.sqrt(n) + <span class="number">1</span>; x += <span class="number">6</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n % (x - <span class="number">1</span>) == <span class="number">0</span> || n % (x + <span class="number">1</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line">mathIsPrime(<span class="number">0</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-3-时间格式化"><a href="#10-3-时间格式化" class="headerlink" title="10.3 时间格式化"></a>10.3 时间格式化</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dateFormatter = <span class="function">(<span class="params">formatter, date</span>) =&gt;</span> &#123;</span><br><span class="line">	date = (date ? <span class="keyword">new</span> <span class="built_in">Date</span>(date) : <span class="keyword">new</span> <span class="built_in">Date</span>)</span><br><span class="line">	<span class="keyword">const</span> Y = date.getFullYear() + <span class="string">''</span>,</span><br><span class="line">          M = date.getMonth() + <span class="number">1</span>,</span><br><span class="line">          D = date.getDate(),</span><br><span class="line">          H = date.getHours(),</span><br><span class="line">          m = date.getMinutes(),</span><br><span class="line">          s = date.getSeconds()</span><br><span class="line">    <span class="keyword">return</span> formatter.replace(<span class="regexp">/YYYY|yyyy/g</span>, Y)</span><br><span class="line">        			.replace(<span class="regexp">/YY|yy/g</span>, Y.substr(<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">        			.replace(<span class="regexp">/MM/g</span>, (M &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + M)</span><br><span class="line">        			.replace(<span class="regexp">/DD/g</span>, (D &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + D)</span><br><span class="line">        			.replace(<span class="regexp">/HH|hh/g</span>, (H &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + H)</span><br><span class="line">        			.replace(<span class="regexp">/mm/g</span>, (m &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + m)</span><br><span class="line">        			.replace(<span class="regexp">/ss/g</span>, (s &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dateFormatter(<span class="string">'YYYY-MM-DD HH:mm'</span>, <span class="string">'1995/02/15 13:55'</span>) <span class="comment">// 1995-02-15 13:55</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-4-获取当月多少天"><a href="#10-4-获取当月多少天" class="headerlink" title="10.4 获取当月多少天"></a>10.4 获取当月多少天</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCountDays</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> curDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">        <span class="comment">/* 获取当前月份 */</span></span><br><span class="line">        <span class="keyword">var</span> curMonth = curDate.getMonth();</span><br><span class="line">    <span class="comment">/*  生成实际的月份: 由于curMonth会比实际月份小1, 故需加1 */</span></span><br><span class="line">    curDate.setMonth(curMonth + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">/* 将日期设置为0, 这里为什么要这样设置, 我不知道原因, 这是从网上学来的 */</span></span><br><span class="line">    curDate.setDate(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">/* 返回当月的天数 */</span></span><br><span class="line">    <span class="built_in">console</span>.log( curDate.getDate());</span><br><span class="line">    <span class="keyword">return</span> curDate.getDate();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//例如,  获取当前月份(现在是6月)的总天数: </span></span><br><span class="line">getCountDays()       <span class="comment">// 返回30</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-5-代码复用"><a href="#10-5-代码复用" class="headerlink" title="10.5 代码复用"></a>10.5 代码复用</h3><p>虽然将 <code>foo.bar</code> 写成 <code>foo [&#39;bar&#39;]</code> 是一种常见的做法，但是这种做法构成了编写可重用代码的基础。许多框架使用了这种方法，比如element的<a href="https://link.juejin.im/?target=http%3A%2F%2Felement-cn.eleme.io%2F%23%2Fzh-CN%2Fcomponent%2Fform%23biao-dan-yan-zheng" target="_blank" rel="noopener">表单验证</a>。</p>
+<p>请考虑下面这个验证函数的简化示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validate</span>(<span class="params">values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!values.first)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">if</span>(!values.last)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(validate(&#123;<span class="attr">first</span>:<span class="string">'Bruce'</span>,<span class="attr">last</span>:<span class="string">'Wayne'</span>&#125;)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>上面的函数完美的完成验证工作。但是当有很多表单，则需要应用验证，此时会有不同的字段和规则。如果可以构建一个在运行时配置的通用验证函数，会是一个好选择。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// object validation rules</span></span><br><span class="line"><span class="keyword">const</span> schema = &#123;</span><br><span class="line">  first: &#123;</span><br><span class="line">    required:<span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  last: &#123;</span><br><span class="line">    required:<span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// universal validation function</span></span><br><span class="line"><span class="keyword">const</span> validate = <span class="function">(<span class="params">schema, values</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span>(field <span class="keyword">in</span> schema) &#123;</span><br><span class="line">    <span class="keyword">if</span>(schema[field].required) &#123;</span><br><span class="line">      <span class="keyword">if</span>(!values[field]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(validate(schema, &#123;<span class="attr">first</span>:<span class="string">'Bruce'</span>&#125;)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(validate(schema, &#123;<span class="attr">first</span>:<span class="string">'Bruce'</span>,<span class="attr">last</span>:<span class="string">'Wayne'</span>&#125;)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-6-使用-reduce-检测括号是否对齐封闭"><a href="#10-6-使用-reduce-检测括号是否对齐封闭" class="headerlink" title="10.6 使用 reduce 检测括号是否对齐封闭"></a>10.6 使用 reduce 检测括号是否对齐封闭</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Returns 0 if balanced.</span></span><br><span class="line"><span class="keyword">const</span> isParensBalanced = <span class="function">(<span class="params">str</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> str.split(<span class="string">''</span>).reduce(<span class="function">(<span class="params">counter, char</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(counter &lt; <span class="number">0</span>) &#123; <span class="comment">//matched ")" before "("</span></span><br><span class="line">      <span class="keyword">return</span> counter;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(char === <span class="string">'('</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> ++counter;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(char === <span class="string">')'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> --counter;</span><br><span class="line">    &#125;  <span class="keyword">else</span> &#123; <span class="comment">//matched some other char</span></span><br><span class="line">      <span class="keyword">return</span> counter;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  &#125;, <span class="number">0</span>); <span class="comment">//&lt;-- starting value of the counter</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isParensBalanced(<span class="string">'(())'</span>) <span class="comment">// 0 &lt;-- balanced</span></span><br><span class="line">isParensBalanced(<span class="string">'(asdfds)'</span>) <span class="comment">//0 &lt;-- balanced</span></span><br><span class="line">isParensBalanced(<span class="string">'(()'</span>) <span class="comment">// 1 &lt;-- not balanced</span></span><br><span class="line">isParensBalanced(<span class="string">')('</span>) <span class="comment">// -1 &lt;-- not balanced</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-7-使用-reduce-计算数组中的重复项"><a href="#10-7-使用-reduce-计算数组中的重复项" class="headerlink" title="10.7  使用 reduce 计算数组中的重复项"></a>10.7  使用 reduce 计算数组中的重复项</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cars = [<span class="string">'BMW'</span>,<span class="string">'Benz'</span>, <span class="string">'Benz'</span>, <span class="string">'Tesla'</span>, <span class="string">'BMW'</span>, <span class="string">'Toyota'</span>];</span><br><span class="line"><span class="keyword">var</span> carsObj = cars.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">obj, name</span>) </span>&#123; </span><br><span class="line">   obj[name] = obj[name] ? ++obj[name] : <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;, &#123;&#125;);</span><br><span class="line"></span><br><span class="line">carsObj; <span class="comment">// =&gt; &#123; BMW: 2, Benz: 2, Tesla: 1, Toyota: 1 &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-8-使用IIFE解决循环问题"><a href="#10-8-使用IIFE解决循环问题" class="headerlink" title="10.8 使用IIFE解决循环问题"></a>10.8 使用IIFE解决循环问题</h3><p><strong>unexpected</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(i); &#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">    func();     <span class="comment">// 输出数值 "10" 十次</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>用let解决这个问题</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funcs = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    funcs.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(i); &#125;);</span><br><span class="line">&#125;</span><br><span class="line">funcs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">    func();     <span class="comment">// 从 0 到 9 依次输出</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="10-9-RGB色值生成16进制色值"><a href="#10-9-RGB色值生成16进制色值" class="headerlink" title="10.9 RGB色值生成16进制色值"></a>10.9 RGB色值生成16进制色值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rgb2Hex = <span class="function"><span class="params">rgb</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> rgbList = rgb.toString().match(<span class="regexp">/\d+/g</span>)</span><br><span class="line">    <span class="keyword">let</span> hex = <span class="string">'#'</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = rgbList.length; i &lt; len; ++i) &#123;</span><br><span class="line">      hex += (<span class="string">'0'</span> + <span class="built_in">Number</span>(rgbList[i]).toString(<span class="number">16</span>)).slice(<span class="number">-2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hex</span><br><span class="line">&#125;;</span><br><span class="line">rgb2Hex(<span class="string">'100, 50, 0'</span>) <span class="comment">// '#643200'</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-10-利用Map，或object快速查找-查表法"><a href="#10-10-利用Map，或object快速查找-查表法" class="headerlink" title="10.10 利用Map，或object快速查找, 查表法"></a>10.10 利用Map，或object快速查找, 查表法</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/lib/" rel="tag"># lib</a>
+          
+            <a href="/tags/es6/" rel="tag"># es6</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/17/js-polyfill/" rel="next" title="js-polyfill">
+                <i class="fa fa-chevron-left"></i> js-polyfill
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ivan</p>
+              <p class="site-description motion-element" itemprop="description">魏杰的个人博客_web前端技术 52css.github.io,分享学习和工作前端效果</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS-技巧（es6）"><span class="nav-number">1.</span> <span class="nav-text">JS 技巧（es6）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-String"><span class="nav-number">1.1.</span> <span class="nav-text">1. String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-格式化千分位金钱"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 格式化千分位金钱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-生成随机ID"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 生成随机ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-生成随机HEX色值"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 生成随机HEX色值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-生成星级评分"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 生成星级评分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-字符串模板替换"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 字符串模板替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-补零"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6 补零</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-toNumber"><span class="nav-number">1.1.7.</span> <span class="nav-text">1.7 toNumber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-格式化JSON代码"><span class="nav-number">1.1.8.</span> <span class="nav-text">1.8 格式化JSON代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Number"><span class="nav-number">1.2.</span> <span class="nav-text">2. Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-取整"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 取整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-四舍五入"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 四舍五入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-计算奇数偶数"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 计算奇数偶数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-随机数"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 随机数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-转字符串"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 转字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-幂次方"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 幂次方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-numberEq-相等"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7 numberEq 相等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-isNumber"><span class="nav-number">1.2.8.</span> <span class="nav-text">2.8 isNumber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-保留2位小数"><span class="nav-number">1.2.9.</span> <span class="nav-text">2.9 保留2位小数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Boolean"><span class="nav-number">1.3.</span> <span class="nav-text">3. Boolean</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-转换boolean"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 转换boolean</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Date"><span class="nav-number">1.4.</span> <span class="nav-text">4. Date</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-时间戳"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 时间戳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Array"><span class="nav-number">1.5.</span> <span class="nav-text">5. Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-获取数据最大，最小值"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 获取数据最大，最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-克隆数组"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 克隆数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-合并数组"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 合并数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-去重数组"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.4 去重数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-数组随机"><span class="nav-number">1.5.5.</span> <span class="nav-text">5.5 数组随机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-清空数组"><span class="nav-number">1.5.6.</span> <span class="nav-text">5.6 清空数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-截断数组"><span class="nav-number">1.5.7.</span> <span class="nav-text">5.7 截断数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-8-截取数组"><span class="nav-number">1.5.8.</span> <span class="nav-text">5.8 截取数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-9-交换赋值"><span class="nav-number">1.5.9.</span> <span class="nav-text">5.9 交换赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-10-过滤空值"><span class="nav-number">1.5.10.</span> <span class="nav-text">5.10 过滤空值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-11-数据Prmose按顺序执行"><span class="nav-number">1.5.11.</span> <span class="nav-text">5.11 数据Prmose按顺序执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-12-数组去重"><span class="nav-number">1.5.12.</span> <span class="nav-text">5.12 数组去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-13-数组首部插入成员"><span class="nav-number">1.5.13.</span> <span class="nav-text">5.13 数组首部插入成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-14-数组尾部插入成员"><span class="nav-number">1.5.14.</span> <span class="nav-text">5.14 数组尾部插入成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-15-数组转map"><span class="nav-number">1.5.15.</span> <span class="nav-text">5.15 数组转map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-16-数组结构-通过object来，可以不用定义无用的变量"><span class="nav-number">1.5.16.</span> <span class="nav-text">5.16 数组结构(通过object来，可以不用定义无用的变量)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-17-解构数组成员默认值"><span class="nav-number">1.5.17.</span> <span class="nav-text">5.17 解构数组成员默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-18-获取随机数组成员"><span class="nav-number">1.5.18.</span> <span class="nav-text">5.18 获取随机数组成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-19-创建指定长度数组"><span class="nav-number">1.5.19.</span> <span class="nav-text">5.19 创建指定长度数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-20-创建指定长度且值相等的数组"><span class="nav-number">1.5.20.</span> <span class="nav-text">5.20 创建指定长度且值相等的数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-21-数组排序"><span class="nav-number">1.5.21.</span> <span class="nav-text">5.21 数组排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-22-扁平化多维数组"><span class="nav-number">1.5.22.</span> <span class="nav-text">5.22 扁平化多维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-23-使用-Array-includes-来处理多重条件"><span class="nav-number">1.5.23.</span> <span class="nav-text">5.23 使用 Array.includes 来处理多重条件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Object"><span class="nav-number">1.6.</span> <span class="nav-text">6. Object</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-判断是否是Object"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 判断是否是Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-判断Object是否是空"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 判断Object是否是空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-克隆对象-不支持自己指向自己"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 克隆对象(不支持自己指向自己)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-合并对象"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4 合并对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-对象字面量"><span class="nav-number">1.6.5.</span> <span class="nav-text">6.5 对象字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-对象变量属性"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.6 对象变量属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7-创建纯空对象"><span class="nav-number">1.6.7.</span> <span class="nav-text">6.7 创建纯空对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-8-删除对象无用属性"><span class="nav-number">1.6.8.</span> <span class="nav-text">6.8 删除对象无用属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-9-解构对象属性嵌套"><span class="nav-number">1.6.9.</span> <span class="nav-text">6.9 解构对象属性嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-10-解构对象属性别名"><span class="nav-number">1.6.10.</span> <span class="nav-text">6.10 解构对象属性别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-11-解构对象属性默认值"><span class="nav-number">1.6.11.</span> <span class="nav-text">6.11 解构对象属性默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Function"><span class="nav-number">1.7.</span> <span class="nav-text">7. Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-隐式返回值"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 隐式返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-检测非空参数"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2 检测非空参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-优雅处理Async-Await参数"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3 优雅处理Async/Await参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-优雅处理多个函数返回值"><span class="nav-number">1.7.4.</span> <span class="nav-text">7.4 优雅处理多个函数返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-获取函数参数"><span class="nav-number">1.7.5.</span> <span class="nav-text">7.5 获取函数参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-利用chunk函数，执行只执行一次函数"><span class="nav-number">1.7.6.</span> <span class="nav-text">7.6 利用chunk函数，执行只执行一次函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-7-防抖"><span class="nav-number">1.7.7.</span> <span class="nav-text">7.7 防抖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-8-节流"><span class="nav-number">1.7.8.</span> <span class="nav-text">7.8 节流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-DOM"><span class="nav-number">1.8.</span> <span class="nav-text">8. DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-过滤XSS"><span class="nav-number">1.8.1.</span> <span class="nav-text">8.1 过滤XSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-BOM"><span class="nav-number">1.9.</span> <span class="nav-text">9. BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-操作URL查询参数"><span class="nav-number">1.9.1.</span> <span class="nav-text">9.1 操作URL查询参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-存取LocalStorage"><span class="nav-number">1.9.2.</span> <span class="nav-text">9.2 存取LocalStorage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-设置微信title"><span class="nav-number">1.9.3.</span> <span class="nav-text">9.3 设置微信title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-获取一个链接的绝对地址"><span class="nav-number">1.9.4.</span> <span class="nav-text">9.4 获取一个链接的绝对地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-其他"><span class="nav-number">1.10.</span> <span class="nav-text">10. 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-颜色混合"><span class="nav-number">1.10.1.</span> <span class="nav-text">10.1 颜色混合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-判断是否为质数"><span class="nav-number">1.10.2.</span> <span class="nav-text">10.2 判断是否为质数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-时间格式化"><span class="nav-number">1.10.3.</span> <span class="nav-text">10.3 时间格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-获取当月多少天"><span class="nav-number">1.10.4.</span> <span class="nav-text">10.4 获取当月多少天</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-代码复用"><span class="nav-number">1.10.5.</span> <span class="nav-text">10.5 代码复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-使用-reduce-检测括号是否对齐封闭"><span class="nav-number">1.10.6.</span> <span class="nav-text">10.6 使用 reduce 检测括号是否对齐封闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-7-使用-reduce-计算数组中的重复项"><span class="nav-number">1.10.7.</span> <span class="nav-text">10.7  使用 reduce 计算数组中的重复项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-8-使用IIFE解决循环问题"><span class="nav-number">1.10.8.</span> <span class="nav-text">10.8 使用IIFE解决循环问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-9-RGB色值生成16进制色值"><span class="nav-number">1.10.9.</span> <span class="nav-text">10.9 RGB色值生成16进制色值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-10-利用Map，或object快速查找-查表法"><span class="nav-number">1.10.10.</span> <span class="nav-text">10.10 利用Map，或object快速查找, 查表法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
