@@ -232,6 +232,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/Vue-高阶组件element-ui-button/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="52css">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/27/Vue-高阶组件element-ui-button/" itemprop="url">Vue 高阶组件element-ui button</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-27T15:05:30+08:00">
+                2019-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">export default &#123;</span></span><br><span class="line"><span class="undefined">  name: 'ButtonHoc',</span></span><br><span class="line"><span class="undefined">  props: &#123;&#125;,</span></span><br><span class="line"><span class="undefined">  data() &#123;</span></span><br><span class="line"><span class="undefined">    return &#123;</span></span><br><span class="line"><span class="undefined">      loading: false // 显示加载中</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  methods: &#123;</span></span><br><span class="line"><span class="undefined">    handleClickLink(event) &#123;</span></span><br><span class="line"><span class="undefined">      const that = this</span></span><br><span class="line"><span class="undefined">      const fn = that.$listeners.click</span></span><br><span class="line"><span class="undefined">      const timer = that.$attrs.timer || 300</span></span><br><span class="line"><span class="undefined">      this.loading = true</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">      event.preventDefault()</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">      // 如果是promise，等有结果关闭loading</span></span><br><span class="line"><span class="undefined">      try &#123;</span></span><br><span class="line"><span class="undefined">        fn.call(that, event)</span></span><br><span class="line"><span class="undefined">          .then(() =&gt; &#123;</span></span><br><span class="line"><span class="undefined">            this.loading = false</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="undefined">          .catch(() =&gt; &#123;</span></span><br><span class="line"><span class="undefined">            this.loading = false</span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="undefined">      &#125; catch (ex) &#123;</span></span><br><span class="line"><span class="undefined">        // 延迟300ms，关闭loading</span></span><br><span class="line"><span class="undefined">        setTimeout(() =&gt; &#123;</span></span><br><span class="line"><span class="undefined">          this.loading = false</span></span><br><span class="line"><span class="undefined">        &#125;, timer)</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  render(h) &#123;</span></span><br><span class="line"><span class="undefined">    // 内容插槽</span></span><br><span class="line"><span class="undefined">    const slots = Object.keys(this.$slots)</span></span><br><span class="line"><span class="undefined">      .reduce((arr, key) =&gt; arr.concat(this.$slots[key]), [])</span></span><br><span class="line"><span class="undefined">      .map(vnode =&gt; &#123;</span></span><br><span class="line"><span class="undefined">        vnode.context = this._self</span></span><br><span class="line"><span class="undefined">        return vnode</span></span><br><span class="line"><span class="undefined">      &#125;)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    return h('el-button', &#123;</span></span><br><span class="line"><span class="undefined">      on: &#123;</span></span><br><span class="line"><span class="undefined">        click: this.handleClickLink // 新组件绑定click事件</span></span><br><span class="line"><span class="undefined">      &#125;,</span></span><br><span class="line"><span class="undefined">      props: this.$props,</span></span><br><span class="line"><span class="undefined">      // 透传 scopedSlots</span></span><br><span class="line"><span class="undefined">      scopedSlots: this.$scopedSlots,</span></span><br><span class="line"><span class="undefined">      attrs: &#123;</span></span><br><span class="line"><span class="undefined">        ...this.$attrs,</span></span><br><span class="line"><span class="undefined">        loading: this.loading // 显示loading</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;, slots)</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/Javascript-结合ES6-技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1442,126 +1562,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/JS如何优雅取值/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ivan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="52css">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/06/JS如何优雅取值/" itemprop="url">JS如何优雅取值</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-06T10:04:00+08:00">
-                2018-11-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="js取值一直是一个坑"><a href="#js取值一直是一个坑" class="headerlink" title="js取值一直是一个坑"></a>js取值一直是一个坑</h2><p>例如<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> res = &#123;</span><br><span class="line">  result: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 取第一项id需要</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (res &amp;&amp; res.result &amp;&amp; res.result[<span class="number">0</span>] &amp;&amp; res.result[<span class="number">0</span>].id) &#123; <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一大段就是为了取一个简单的值，有什么更优雅的方式取值吗？</span></span><br><span class="line"><span class="comment">// 第一解决可以一直“点下去”，需要返回对象（object、array、function）</span></span><br><span class="line"><span class="comment">// 第二解决取值通过执行进行，这样返回的对象只能是function</span></span><br><span class="line"><span class="comment">// es6的Proxy可以对get、apply拦截</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pointer</span>(<span class="params">obj, path = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Proxy</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;, &#123;</span><br><span class="line">    <span class="keyword">get</span> (target, property) &#123;</span><br><span class="line">      <span class="comment">// 拦截 path， apply里面使用</span></span><br><span class="line">      <span class="keyword">return</span> pointer(obj, path.concat(property))</span><br><span class="line">    &#125;,</span><br><span class="line">    apply (target, self, args) &#123;</span><br><span class="line">      <span class="keyword">let</span> val = obj;</span><br><span class="line">      <span class="keyword">let</span> parent;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; path.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 如果没值不用再次取值</span></span><br><span class="line">        <span class="keyword">if</span>(val === <span class="literal">null</span> || val === <span class="literal">undefined</span>) <span class="keyword">break</span>;</span><br><span class="line">        parent = val;</span><br><span class="line">        val = val[path[i]]</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(val === <span class="literal">null</span> || val === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="comment">// 如果有默认值，附上默认值</span></span><br><span class="line">        val = args[<span class="number">0</span>]</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = &#123;<span class="attr">a</span>: &#123;<span class="attr">b</span>: [<span class="number">1</span>, ,<span class="number">2</span> ,<span class="number">3</span>]&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(pointer(c).a());   <span class="comment">// &#123;b: [1,2,3]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(pointer(c).a.b()); <span class="comment">// [1,2,3]</span></span><br><span class="line"><span class="built_in">console</span>.log(pointer(c).a.a.a); <span class="comment">// ƒ anonymous()</span></span><br><span class="line"><span class="built_in">console</span>.log(pointer(c).a.a.a()); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(pointer(c).a.b.d(<span class="string">'default value'</span>));  <span class="comment">// default value</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1612,7 +1612,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1625,7 +1625,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
